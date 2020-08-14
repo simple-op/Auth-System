@@ -28,6 +28,7 @@
     "noty": "^3.2.0-beta",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "randomstring": "^1.1.5"
+    "randomstring": "^1.1.5",
+    "request": "^2.88.2"
   }
 }

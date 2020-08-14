@@ -20,5 +20,11 @@ function resetPassword(){
 
     $("#resetForm").toggleClass("hidden","show");
     $("#forgot-form").toggleClass("hidden","show");
-    
+
 }
+
+
+$('.email').bind("cut copy paste",function(e) {
+    e.preventDefault();
+});
+

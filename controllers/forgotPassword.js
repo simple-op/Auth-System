@@ -3,6 +3,9 @@ const model=require("../models/token");
 const user=require("../models/user")
 const nodemailer = require('nodemailer');
 const bcrypt=require("bcrypt");
+const request = require("request");
+const duration=600000;
+
 
 
 module.exports.forgot=function(req,res){
@@ -15,7 +18,7 @@ module.exports.forgot=function(req,res){
               let email=req.body.email;
               model.findOne({email:email},function(err,token){
                     
-                  if(!token||(Date.now()-token.created)>60000) {
+                  if(!token||(Date.now()-token.created)>duration) {
                     
                     if(token){
                         console.log(Date.now())
@@ -31,34 +34,63 @@ module.exports.forgot=function(req,res){
                     created:Date.now()
                 })
 
-                let transporter = nodemailer.createTransport({
-                    host: "smtp.ethereal.email",
-                    port: 587,
-                    secure: false,  
-                  service: 'gmail',
-                  auth: {
-                    user: 'rameshkumar160196@gmail.com', 
+
+
+
+               
+
+let options = {
+  method: 'POST',
+  url: 'https://api.sendinblue.com/v3/smtp/email',
+  headers: {
+    accept: 'application/json',
+    'content-type': 'application/json',
+    'api-key': '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'
+  },
+  body: {
+    sender: {name: 'Team Hanny', email: 'hanny@codingninja.com'},
+    to: [{email: email}],
+    replyTo: {email: 'hanny@codingninja.com'},
+    params: {verificationLink: 'http://localhost:8000/forgotPass/?token='+rtoken},
+    templateId: 18
+  },
+  json: true
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+                // let transporter = nodemailer.createTransport({
+                //     host: "smtp.ethereal.email",
+                //     port: 587,
+                //     secure: false,  
+                //   service: 'gmail',
+                //   auth: {
+                //     user: 'rameshkumar160196@gmail.com', 
                 
                 
                     
-                    pass: 'ptwmjg.ad' 
-                  }
-                });
+                //     pass: 'ptwmjg.ad' 
+                //   }
+                // });
                 
-                let mailOptions = {
-                  from: 'rameshkumar160196@gmail.com',
-                  to: email,
-                  subject: 'Sending Email using Node.js',
-                  text: 'http://localhost:8000/forgotPass/?token='+rtoken
-                };
+                // let mailOptions = {
+                //   from: 'rameshkumar160196@gmail.com',
+                //   to: email,
+                //   subject: 'Sending Email using Node.js',
+                //   text: 'http://localhost:8000/forgotPass/?token='+rtoken
+                // };
                 
-                transporter.sendMail(mailOptions, function(error, info){
-                  if (error) {
-                    console.log(error);
-                  } else {
-                    console.log('Email sent: ' + info.response);
-                  }
-                });
+                // transporter.sendMail(mailOptions, function(error, info){
+                //   if (error) {
+                //     console.log(error);
+                //   } else {
+                //     console.log('Email sent: ' + info.response);
+                //   }
+                // });
                 
                 
                    
@@ -91,9 +123,11 @@ module.exports.resetForgot=function(req,res){
      
     model.findOne({token:req.query.token},function(err,token){
 
-        if(token&&(Date.now()-token.created)<60000){
+        if(token&&(Date.now()-token.created)<duration){
             res.render("forgotPass",{
-                token:token.token})
+                token:token.token,
+                email:token.email 
+            })
                    
         }
         else{
@@ -117,7 +151,7 @@ module.exports.resetForgotPass=function(req,res){
 
     model.findOne({token:req.body.token},function(err,token){
 
-        if(token&&(Date.now()-token.created)<60000){
+        if(token&&(Date.now()-token.created)<duration){
             
             user.findOne({email:token.email},function(err,userf){
 
