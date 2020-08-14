@@ -1,0 +1,36 @@
+h1{
+
+    padding: 5%;
+}
+#loginForm{
+
+     width: 30%;
+     margin: auto;
+}
+
+.form-group {
+    text-align: center;
+
+}
+
+body{
+    background-image: url("/Images/background.png");
+    background-size: cover;
+    
+}
+#resetForm,#forgot-form,#reset-forgot-form{
+ 
+    
+    width: 30%;
+    text-align: center;
+    margin: auto;
+}
+
+.hidden{
+    display: none;
+}
+
+.show{
+    display:initial;
+}
+
