@@ -9,6 +9,7 @@ const passport = require('passport');
 const session=require("express-session");
 var cookieParser = require('cookie-parser');
 require("./config/passport-local");
+require("./config/oauth")
 const mongo_connect=require("connect-mongo")(session);
 const flash = require('connect-flash');
 const cMiddleware=require("./config/middleware");
