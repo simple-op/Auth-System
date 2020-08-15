@@ -52,7 +52,7 @@ let options = {
     sender: {name: 'Team Hanny', email: 'hanny@codingninja.com'},
     to: [{email: email}],
     replyTo: {email: 'hanny@codingninja.com'},
-    params: {verificationLink: 'http://localhost:8000/forgotPass/?token='+rtoken},
+    params: {verificationLink: 'http:///forgotPass/?token='+rtoken},
     templateId: 18
   },
   json: true
