@@ -8,16 +8,20 @@ const LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
+    ,passReqToCallback:true
+
   },
-    function(username, password, done) {
+    function(req,username, password, done) {
       User.findOne({ email: username }, function (err, user) {
         if (err) { return done(err); }
         if (!user) {
+            req.flash("error","Email Not Registered")
           return done(null, false, { message: 'Incorrect username.' });
         }
         
         bcrypt.compare(password,user.password, function(err, result){
           if (!result) {
+            req.flash("error","Invalid Password")
             return done(null, false, { message: 'Incorrect password.' });
           }
          

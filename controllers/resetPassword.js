@@ -6,13 +6,15 @@ module.exports.reset=async function(req,res){
     //  console.log(req.body.c_password)
     bcrypt.compare( req.body.p_password,req.user.password, function(err, result){
         if (!result) {
-
-            console.log("Didnt Password")
+            console.log("sdfds")
+            req.flash("error","Invalid Current Password");
+            return res.redirect("back");
         }
        else{
         function validatePassword(password) {
             const re = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])([a-zA-Z0-9@$!%*?&]{8,})$/;
             return re.test(password);
+            
             
         }
        if(validatePassword(req.body.n_password))
@@ -25,11 +27,15 @@ module.exports.reset=async function(req,res){
                     })
 
                    })
-                            
+                   req.flash("success","Password Changed Successfully");
+                   return res.redirect("back"); 
                    }
                    else{
                           
-                            
+                
+                    req.flash("error","New Password Mismatch");
+                    return res.redirect("back");
+        
                              
                             
 
@@ -38,7 +44,9 @@ module.exports.reset=async function(req,res){
                    
         } 
         else{
-
+            
+            req.flash("error","Invalid New Password");
+            return res.redirect("back");
 
         }
       
@@ -47,6 +55,6 @@ module.exports.reset=async function(req,res){
        } 
 
     })
-    return res.redirect("/");
+    
 
 }

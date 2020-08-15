@@ -1,6 +1,6 @@
 const random=require("randomstring");
 const model=require("../models/token");
-const user=require("../models/user")
+const user=require("../models/user");
 const nodemailer = require('nodemailer');
 const bcrypt=require("bcrypt");
 const request = require("request");
@@ -13,7 +13,8 @@ module.exports.forgot=function(req,res){
 
     
  
-              if(user){                
+              if(user){   
+                       
               let rtoken=random.generate();
               let email=req.body.email;
               model.findOne({email:email},function(err,token){
@@ -93,12 +94,17 @@ request(options, function (error, response, body) {
                 // });
                 
                 
-                   
+                req.flash("success","Link Sent To Your Email");
+                return  res.redirect("/login");
+                
+                 
             }
 
             else{
-
-                
+              console.log("kjkj")
+              req.flash("warning","Link Already Sent To Your Email")
+              return  res.redirect("/login");
+             
             }
               })
               
@@ -107,16 +113,17 @@ request(options, function (error, response, body) {
              
 
 
-            
               
             }
-            })
-            res.redirect("back");
-
-
+            else{
+                 
              
-
-}
+             req.flash("error","Email Not Registered");
+             return  res.redirect("/login");
+            }
+            })
+        
+          }
 
 
 module.exports.resetForgot=function(req,res){
@@ -172,18 +179,35 @@ module.exports.resetForgotPass=function(req,res){
                             })
         
                            })
+
+                           console.log("fsdfds")
+                            req.flash("success","Password Changed Successfully");
+                            return  res.redirect("/");
                                     
+                           }
+                           else{
+                            console.log("fsdfds")
+                            req.flash("error","Password Mismatch!!");
+                            return  res.redirect("back");
                            }
 
  
+            }
+            else{
+            console.log("fsdfds")
+            req.flash("error","Invalid Password");
+            return  res.redirect("back");
+
             }
                    
         })
     }
         else{
+          console.log("SAD sad")
+          req.flash("error","Link Was Expired. Please Resent Again ");
           return  res.redirect("/");
         } 
-        return  res.redirect("/");
+        
     })
 
   

@@ -7,9 +7,11 @@ require("../config/passport-local");
 
 
 router.get("/login",login.loginPage)
-
-router.post('/login' ,passport.authenticate('local', { successRedirect: '/',
-failureRedirect: '/login' }));
+ 
+router.post('/login' ,passport.authenticate('local', { 
+failureRedirect: '/login',failureMessage:"Invalid Username And Password" }),
+login.login
+);
 
  
 

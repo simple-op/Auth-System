@@ -10,6 +10,8 @@ const session=require("express-session");
 var cookieParser = require('cookie-parser');
 require("./config/passport-local");
 const mongo_connect=require("connect-mongo")(session);
+const flash = require('connect-flash');
+const cMiddleware=require("./config/middleware");
 app.use(express.urlencoded());
 
 
@@ -36,6 +38,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.isUserAuth);
+
+app.use(flash());
+app.use(cMiddleware.flash);
+
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"./views"));
 app.use(express.static('assets'));

@@ -31,37 +31,32 @@ module.exports.signup=function(req,res){
     console.log("called")
     
     if(!req.body.password||!req.body.email||!req.body.password||!req.body.re_password){
-        return  res.render("./signup",{
-            err:"Enter every detail"
-        })
+        req.flash("error","All Fields Are Required");
+        return  res.redirect("/signup")
     } 
      
     const email=req.body.email;
     if (!validateEmail(email)){
-       return  res.render("./signup",{
-            err:"Enter a valid email"
-        })
+        req.flash("error","Enter a valid email");
+       return  res.redirect("/signup")
     }    
 
     if(req.body.password!=req.body.re_password){
-        return  res.render("./signup",{
-            err:"Both password must be same"
-        })
+        req.flash("error","Both Password Must Be Same");
+        return  res.redirect("/signup")
     }  
 
     const password=req.body.password;
     if(!validatePassword(password)){
-        return  res.render("./signup",{
-            err:"Password must be valid "
-        })
+        req.flash("error","Password Must Be Valid");
+        return  res.redirect("/signup")
     } 
   
     model.findOne({email:req.body.email},function(err,user){
       if(user){
 
-        return  res.render("./signup",{
-              err:"User Already Exists"
-          })
+         req.flash("error","User Already Exists");
+        return  res.redirect("/signup")
 
       }
 
@@ -75,7 +70,8 @@ module.exports.signup=function(req,res){
                 name:req.body.name
              })
         });
-        
+         
+        req.flash("success","You SignedUp Successfully. Now Login here")
         return  res.redirect("/login")
           
 
