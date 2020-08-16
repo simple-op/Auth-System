@@ -24,12 +24,12 @@
     <form action="login" method="post" id="loginForm">
         <div class="form-group">
             
-            <input class="form-control" type="email" name="email" id="" placeholder="Your email...">
+            <input required class="form-control" type="email" name="email" id="" placeholder="Your email...">
         </div>
       
        <div class="form-group">
            
-        <input  class="form-control" type="password" name="password" id="" placeholder="Your password...">
+        <input required  class="form-control" type="password" name="password" id="" placeholder="Your password...">
        </div>
         <div class="form-group">
             <button class="btn btn-success" type="submit">LOGIN</button>
@@ -51,7 +51,7 @@
          <div id="forgot-form" class="hidden">
            <form action="/forgot" method="post">
             <div class="form-group">
-                <input type="email"  class="form-control" placeholder="Enter your Email..."  required name="email">
+                <input required type="email"  class="form-control" placeholder="Enter your Email..."  required name="email">
                 
             </div>
               <div class="form-group">
