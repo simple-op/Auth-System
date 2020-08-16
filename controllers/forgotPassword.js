@@ -132,14 +132,15 @@ module.exports.resetForgot=function(req,res){
     model.findOne({token:req.query.token},function(err,token){
 
         if(token&&(Date.now()-token.created)<duration){
-            res.render("forgotPass",{
+        return    res.render("forgotPass",{
                 token:token.token,
                 email:token.email 
             })
                    
         }
         else{
-            res.redirect("/")
+          req.flash("error","Link Was Expired Or Invalid");
+             return res.redirect("/")
         }  
 
     })
