@@ -66,3 +66,23 @@ ul{
    
     
 }
+#googleButton{
+    width: 29.7%;
+    background-color: whitesmoke;
+    color: dodgerblue;
+    box-shadow: 0 0 5px 2px blue;
+}
+
+@media screen and (max-width: 780px) {
+   
+    #resetForm,#forgot-form,#reset-forgot-form,#loginForm{
+ 
+    
+        width: 95vw;
+        text-align: center;
+        margin: auto;
+    }
+    #googleButton{
+        width: 95vw;
+    }
+  }
