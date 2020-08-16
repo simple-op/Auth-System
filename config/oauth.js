@@ -1,4 +1,5 @@
 const passport = require('passport');
+// requring google oauth to use
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const bcrypt=require("bcrypt");
 const User=require("../models/user");
@@ -11,7 +12,7 @@ const { flash } = require('./middleware');
 //   Strategies in Passport require a `verify` function, which accept
 //   credentials (in this case, an accessToken, refreshToken, and Google
 //   profile), and invoke a callback with a user object.
-
+// 
 passport.use(new GoogleStrategy({
     clientID: "31189753133-0hm3llpntv263u8matdfb9d6pfjcdjd2.apps.googleusercontent.com",
     clientSecret: "y-QWPkZXIT5DWNvktAiZd6k_",
@@ -27,6 +28,7 @@ passport.use(new GoogleStrategy({
         if (user){
             if(user.verified===false){
                 User.findByIdAndUpdate(user._id,{verified:true},function(err,user){
+                    // if user log in with google after sign up deletes its verify token and set verified in db to "true"
                         token.findOneAndDelete({email:user.email},function(err){
 
                         })
@@ -38,14 +40,14 @@ passport.use(new GoogleStrategy({
             // if found, set this user as req.user
             return done(null, user);
         }else{
-            // if not found, create the user and set it as req.user
+        //    generating random passcode to set for new google user
             let pass=random.generate({
                 length:16
                 
 
             })
             
-
+            // if not found, create the user and set it as req.user
                 User.create({
                     name: profile.displayName,
                     email: profile.emails[0].value,
@@ -58,7 +60,7 @@ passport.use(new GoogleStrategy({
                     if (err){console.log('error in creating user google strategy-passport', err); return;}
                     
                   
-                         
+                        //sending user to request object  
                     return done(null,user);
                 });
         

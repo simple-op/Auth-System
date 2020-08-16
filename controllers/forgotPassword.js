@@ -1,38 +1,47 @@
 const random=require("randomstring");
 const model=require("../models/token");
 const user=require("../models/user");
+// THIS IS USED TO SEND MAILS VIA GMAIL
 const nodemailer = require('nodemailer');
 const bcrypt=require("bcrypt");
+// requring request for sending email with mail service provider "SEND IN BLUE"
 const request = require("request");
+// token expire duration ~10mins
 const duration=600000;
 
 
-
+// controller for rendering the set new password  page
 module.exports.forgot=function(req,res){
+  // find user
                user.findOne({email:req.body.email},function(err,user){
 
     
  
               if(user){   
-                       
+                // if user found
+                      // generate random 32 letters token to store in db 
               let rtoken=random.generate();
+              // getting entered email by user
               let email=req.body.email;
+              // finding token with email entered
               model.findOne({email:email},function(err,token){
                     
                   if(!token||(Date.now()-token.created)>duration) {
                     
+                    
                     if(token){
                         console.log(Date.now())
                         
-                        
+                        // token found then delete if it is expired
                         model.findByIdAndDelete(token._id, function(err){
 
                         })
                     }
-
+                //  token not found then create new
                    model.create({
                     token:rtoken,
                     email:email,
+                    // setting creation time of token
                     created:Date.now()
                 })
 
@@ -40,7 +49,7 @@ module.exports.forgot=function(req,res){
 
 
                
-
+// sending mail to the user if user token is not present or expired
 let options = {
   method: 'POST',
   url: 'https://api.sendinblue.com/v3/smtp/email',
@@ -53,6 +62,7 @@ let options = {
     sender: {name: 'Team AuthSystems', email: 'AuthSystems@auth.com'},
     to: [{email: email}],
     replyTo: {email:"AuthSystems@auth.com"},
+    // sending link to user with token generated
     params: {verificationLink: 'http://localhost:8000/forgotPass/?token='+rtoken},
     templateId: 18
   },

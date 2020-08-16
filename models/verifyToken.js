@@ -2,13 +2,15 @@ const mongoose=require("mongoose");
 
 
 
-
+// EMAIL VERIFICATION TOKEN SCHEMA
 
 const schema=new mongoose.Schema({
+    // VERIFIACTION TOKEN
     verifytoken:{
         type:String,
         required:true
     },
+    // EMAIL OF USER
     email:{
         type:String,
         required:true

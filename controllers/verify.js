@@ -1,11 +1,13 @@
 const user=require("../models/user")
 const token=require("../models/verifyToken")
-
+// VERIFIY THE USER AFTER SIGN UP
 module.exports.verify=function(req,res){
 
    token.findOne({verifytoken:req.query.token},function(err,tokenf){
+    //  FINDING TOKEN 
               console.log(tokenf);
             if(tokenf){
+              // IF FOUND
               user.findOne({email:tokenf.email},function(err,userf){
                    
                 if(userf){
@@ -23,7 +25,7 @@ module.exports.verify=function(req,res){
                   return res.redirect("/login"); 
                 }
                 else{
-
+                //  IF EMAIL NOT FOUND
                     req.flash("error","Email Not found . Sign Up First!!");
 
                     return res.redirect("/login"); 
@@ -36,7 +38,7 @@ module.exports.verify=function(req,res){
             }
 
             else{
-
+              // IF TOKEN NOT FOUND
                 req.flash("error","Invalid Link or Expired");
                 return res.redirect("/login"); 
 

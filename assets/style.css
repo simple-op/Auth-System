@@ -1,27 +1,33 @@
+/* padding added to heading */
 h1{
 
     padding: 5%;
 }
+/* login form width  */
 #loginForm{
 
      width: 30%;
      margin: auto;
 }
+/* to put buttons in center of form */
 
 .form-group {
     text-align: center;
 
 }
+/* all href will be white */
 a{
     color: white;
 }
 
+/* setting backgroud image */
 body{
     background-image: url("/Images/back.jpg");
     background-size: cover;
    
     
 }
+/* all the forms setting */
 #resetForm,#forgot-form,#reset-forgot-form{
  
     
@@ -29,15 +35,16 @@ body{
     text-align: center;
     margin: auto;
 }
-
+/* class to hide  */
 .hidden{
     display: none;
 }
-
+/* class  to show*/
 .show{
     display:initial;
 }
 
+/* password field red icon to notify */
 #infoPassIcon{
     color: red;
     float: right;
@@ -45,6 +52,7 @@ body{
     
     
 }
+/* password discription */
 #infoPass{
     z-index: -1;
     font-size: small;
@@ -54,7 +62,7 @@ body{
     color: white;
     font-weight: bold;
 }
-
+/* on hover red passInfo icon we get info password */
 #infoPassIcon:hover~#infoPass{
     
     position: absolute;
@@ -62,6 +70,7 @@ body{
     z-index: 1;
 }
 
+/* list of passwords info */
 ul{
     /* padding-inline-start: 20px; */
     list-style: none;
@@ -71,15 +80,16 @@ ul{
    
     
 }
+/* google sign in button */
 #googleButton{
     width: 29.7%;
     background-color: whitesmoke;
     color: dodgerblue;
     box-shadow: 0 0 5px 2px blue;
 }
-
+/* media queries for mobile devices */
 @media screen and (max-width: 780px) {
-   
+   /* all forms */
     #resetForm,#forgot-form,#reset-forgot-form,#loginForm{
  
     

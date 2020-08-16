@@ -5,6 +5,7 @@ const mongoose=require("mongoose");
 
 
 const schema=new mongoose.Schema({
+    // TOKEN TO VERIFY THE FORGOT PASSCODE LINK
     token:{
         type:String,
         required:true
@@ -13,6 +14,7 @@ const schema=new mongoose.Schema({
         type:String,
         required:true
     },
+    // CREaTED USED TO VERIFY TOKEN AGE
     created:{
 
           type:Number,
