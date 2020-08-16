@@ -93,7 +93,7 @@ module.exports.signup=function(req,res){
               sender: {name: 'Team AuthSystems', email: 'AuthSystems@auth.com'},
               to: [{email: email}],
               replyTo: {email:"AuthSystems@auth.com"},
-              params: {link: 'http://localhost:8000/verify/?token='+rtoken},
+              params: {link: 'https://auth-systems.herokuapp.com/verify/?token='+rtoken},
               templateId: 20
             },
             json: true

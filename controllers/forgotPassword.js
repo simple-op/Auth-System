@@ -53,7 +53,7 @@ let options = {
     sender: {name: 'Team AuthSystems', email: 'AuthSystems@auth.com'},
     to: [{email: email}],
     replyTo: {email:"AuthSystems@auth.com"},
-    params: {verificationLink: 'http://localhost:8000/forgotPass/?token='+rtoken},
+    params: {verificationLink: 'https://auth-systems.herokuapp.com/forgotPass/?token='+rtoken},
     templateId: 18
   },
   json: true

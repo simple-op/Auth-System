@@ -13,9 +13,9 @@ const { flash } = require('./middleware');
 //   profile), and invoke a callback with a user object.
 
 passport.use(new GoogleStrategy({
-    clientID: "31189753133-0hm3llpntv263u8matdfb9d6pfjcdjd2.apps.googleusercontent.com",
-    clientSecret: "y-QWPkZXIT5DWNvktAiZd6k_",
-    callbackURL: "http://localhost:8000/auth/google/callback"
+    clientID: "452208836900-m28iubjinjde3et71eadr009md00h3mu.apps.googleusercontent.com",
+    clientSecret: "Qkvx6iJYxrABN3tHRPj_AJcJ",
+    callbackURL: "https://auth-systems.herokuapp.com/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done){
     // find a user
