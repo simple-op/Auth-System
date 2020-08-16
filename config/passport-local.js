@@ -12,6 +12,8 @@ passport.use(new LocalStrategy({
 
   },
     function(req,username, password, done) {
+          
+
       User.findOne({ email: username }, function (err, user) {
         if (err) { return done(err); }
         if (!user) {
@@ -24,7 +26,9 @@ passport.use(new LocalStrategy({
             req.flash("error","Invalid Password")
             return done(null, false, { message: 'Incorrect password.' });
           }
-          
+            
+
+            
            if(user.verified===false){
              req.flash("warning","Plzz Verify Your Email");
 

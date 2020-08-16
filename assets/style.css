@@ -15,7 +15,10 @@ h1{
 
 body{
     background-image: url("/Images/background.png");
-    background-size: cover;
+    
+    background-repeat: no-repeat;
+    background-size: auto;
+
     
 }
 #resetForm,#forgot-form,#reset-forgot-form{
