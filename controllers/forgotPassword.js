@@ -172,7 +172,10 @@ module.exports.resetForgotPass=function(req,res){
                if(validatePassword(req.body.password))
                 {
                           if(req.body.re_password===req.body.password)
-                           {             bcrypt.hash(req.body.password, 10, function(err, hash){
+                           {        model.findByIdAndDelete(token._id,function(err,token){
+
+                          })       
+                                  bcrypt.hash(req.body.password, 10, function(err, hash){
                                          user.findByIdAndUpdate(userf._id,{ password:hash,google:false },function(err,user){
                                           
                                             console.log("pass changed")
