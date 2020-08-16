@@ -34,3 +34,35 @@ body{
     display:initial;
 }
 
+#infoPassIcon{
+    color: red;
+    float: right;
+    
+    
+}
+#infoPass{
+    z-index: -1;
+    font-size: small;
+    position: absolute;
+    visibility: hidden;
+    background-color:lightcoral;
+    color: white;
+    font-weight: bold;
+}
+
+#infoPassIcon:hover~#infoPass{
+    
+    position: absolute;
+    visibility:visible;
+    z-index: 1;
+}
+
+ul{
+    /* padding-inline-start: 20px; */
+    list-style: none;
+    padding: 10px;
+    text-align: left;
+    
+   
+    
+}

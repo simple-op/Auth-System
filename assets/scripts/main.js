@@ -28,3 +28,16 @@ $('.email').bind("cut copy paste",function(e) {
     e.preventDefault();
 });
 
+function validatePassword(password) {
+    const re = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])([a-zA-Z0-9@$!%*?&]{8,})$/;
+    return re.test(password);
+    
+}
+
+let ele=document.getElementById("pass");
+ele.addEventListener("input",function(){if(!validatePassword(ele.value)){ele.style.boxShadow=" 0 0 4px 2px red";
+$("#infoPassIcon").removeClass("hidden");
+}
+else{
+    $("#infoPassIcon").addClass("hidden");
+    ele.style.boxShadow="0 0 4px 2px dodgerblue";}})

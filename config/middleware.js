@@ -4,6 +4,10 @@ module.exports.flash=function(req,res,next){
               "error":req.flash("error"),
               "warning":req.flash("warning")
         }
+        res.locals.a={
+
+            "success":req.flash("success")
+        }
         next();
 
 }

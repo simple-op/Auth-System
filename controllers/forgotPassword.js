@@ -49,10 +49,10 @@ let options = {
     'api-key': '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'
   },
   body: {
-    sender: {name: 'Team Hanny', email: 'hanny@codingninja.com'},
+    sender: {name: 'Team AuthSystems', email: 'AuthSystems@auth.com'},
     to: [{email: email}],
-    replyTo: {email: 'hanny@codingninja.com'},
-    params: {verificationLink: 'https://auth-systems.herokuapp.com/forgotPass/?token='+rtoken},
+    replyTo: {email:"AuthSystems@auth.com"},
+    params: {verificationLink: 'http://localhost:8000/forgotPass/?token='+rtoken},
     templateId: 18
   },
   json: true
@@ -94,7 +94,7 @@ request(options, function (error, response, body) {
                 // });
                 
                 
-                req.flash("success","Link Sent To Your Email");
+                req.flash("success","Link Has Been Sent To Your Email");
                 return  res.redirect("/login");
                 
                  
@@ -102,7 +102,7 @@ request(options, function (error, response, body) {
 
             else{
               console.log("kjkj")
-              req.flash("warning","Link Already Sent To Your Email")
+              req.flash("warning","Link Has Been Already Sent To Your Email")
               return  res.redirect("/login");
              
             }
@@ -171,7 +171,7 @@ module.exports.resetForgotPass=function(req,res){
                 {
                           if(req.body.re_password===req.body.password)
                            {             bcrypt.hash(req.body.password, 10, function(err, hash){
-                                         user.findByIdAndUpdate(userf._id,{ password:hash },function(err,user){
+                                         user.findByIdAndUpdate(userf._id,{ password:hash,google:false },function(err,user){
                                           
                                             console.log("pass changed")
                                             

@@ -4,7 +4,11 @@ const bcrypt=require("bcrypt");
 module.exports.reset=async function(req,res){
 
     //  console.log(req.body.c_password)
-    bcrypt.compare( req.body.p_password,req.user.password, function(err, result){
+    
+    bcrypt.hash(req.user.password, 10, function(err, hash){ 
+                 console.log(req.user.password)
+                 console.log(req.body.p_password)
+    bcrypt.compare( req.body.p_password,req.user.google===true?hash:req.user.password, function(err, result){
         if (!result) {
             console.log("sdfds")
             req.flash("error","Invalid Current Password");
@@ -21,14 +25,16 @@ module.exports.reset=async function(req,res){
         {
                   if(req.body.cn_password===req.body.n_password)
                    {             bcrypt.hash(req.body.n_password, 10, function(err, hash){
-                                 model.findByIdAndUpdate(req.user._id,{ password:hash },function(err,user){
+                                 model.findByIdAndUpdate(req.user._id,{ password:hash,google:false },function(err,user){
                                     
                                          
                     })
 
                    })
                    req.flash("success","Password Changed Successfully");
-                   return res.redirect("back"); 
+                  
+                    return res.redirect("/"); 
+                   
                    }
                    else{
                           
@@ -57,4 +63,5 @@ module.exports.reset=async function(req,res){
     })
     
 
+})
 }

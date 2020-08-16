@@ -20,5 +20,12 @@ router.post("/resetForgotPass",require("../controllers/forgotPassword").resetFor
 
 router.use(require("./signup"));
 router.use(require("./login"));
+router.get("/*",function(req,res){
+    
+    res.redirect("/");
+  })
+  
+
+
 
 module.exports=router; 

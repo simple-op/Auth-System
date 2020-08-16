@@ -16,6 +16,12 @@ const schema=new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    google:{
+        type:Boolean,
+        required:true,
+        default:false
+
     }
       
 },{ 
