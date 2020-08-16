@@ -12,9 +12,12 @@ h1{
     text-align: center;
 
 }
+a{
+    color: white;
+}
 
 body{
-    background-image: url("/Images/background.png");
+    background-image: url("/Images/back.jpg");
     background-size: cover;
     
 }
@@ -85,4 +88,9 @@ ul{
     #googleButton{
         width: 95vw;
     }
+    body{
+        background-image: url(/Images/background_m.jpg);
+        
+    }
+   
   }
