@@ -19,6 +19,7 @@ a{
 body{
     background-image: url("/Images/back.jpg");
     background-size: cover;
+   
     
 }
 #resetForm,#forgot-form,#reset-forgot-form{
@@ -93,4 +94,8 @@ ul{
         
     }
    
+  }
+  
+  body{
+      color: white;
   }
