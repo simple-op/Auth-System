@@ -5,7 +5,7 @@ const mongoose=require("mongoose");
 
 
 const schema=new mongoose.Schema({
-    token:{
+    verifytoken:{
         type:String,
         required:true
     },
@@ -13,13 +13,7 @@ const schema=new mongoose.Schema({
         type:String,
         required:true
     },
-    created:{
-
-          type:Number,
-          required:true,
-          default:Date.now()    
-          
-    }
+    
 },
 
   { 
@@ -30,6 +24,6 @@ const schema=new mongoose.Schema({
 
 
 
-const model=mongoose.model("token",schema);
+const model=mongoose.model("verify_token",schema);
 
 module.exports=model;

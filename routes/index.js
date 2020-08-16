@@ -10,6 +10,7 @@ router.post("/resetPassword",require("../controllers/resetPassword").reset)
 router.post("/forgot",require("../controllers/forgotPassword").forgot)
 router.get("/forgotPass",require("../controllers/forgotPassword").resetForgot)
 router.post("/resetForgotPass",require("../controllers/forgotPassword").resetForgotPass)
+router.get("/verify",require("../controllers/verify").verify)
 
   
 

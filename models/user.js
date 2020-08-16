@@ -22,6 +22,11 @@ const schema=new mongoose.Schema({
         required:true,
         default:false
 
+    },
+    verified:{
+        type:Boolean,
+        required:true,
+        default:false
     }
       
 },{ 

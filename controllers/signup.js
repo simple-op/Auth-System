@@ -1,6 +1,9 @@
 const model=require("../models/user");
+const token=require("../models/verifyToken")
 const bcrypt=require("bcrypt");
-const passport = require("passport");
+const random=require("randomstring");
+// const passport = require("passport");
+const request = require("request");
 
 module.exports.createPage = function(req, res){
     if(req.isAuthenticated()){
@@ -67,11 +70,40 @@ module.exports.signup=function(req,res){
 
                 email:req.body.email,
                 password:hash,
-                name:req.body.name
+                name:req.body.name,
+                verified:false
              })
         });
-         
-        req.flash("success","You SignedUp Successfully. Now Login here")
+       let rtoken=random.generate();
+
+       token.create({
+           verifytoken:rtoken,
+           email:req.body.email
+       })
+              
+        let options = {
+            method: 'POST',
+            url: 'https://api.sendinblue.com/v3/smtp/email',
+            headers: {
+              accept: 'application/json',
+              'content-type': 'application/json',
+              'api-key': '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'
+            },
+            body: {
+              sender: {name: 'Team AuthSystems', email: 'AuthSystems@auth.com'},
+              to: [{email: email}],
+              replyTo: {email:"AuthSystems@auth.com"},
+              params: {link: 'http://localhost:8000/verify/?token='+rtoken},
+              templateId: 20
+            },
+            json: true
+          };
+          request(options, function (error, response, body) {
+            if (error) throw new Error(error);
+          
+            console.log(body);
+          });
+        req.flash("success","You SignedUp Successfully. Verification Mail Sent Your Email ")
         return  res.redirect("/login")
           
 

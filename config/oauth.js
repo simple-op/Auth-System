@@ -3,6 +3,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const bcrypt=require("bcrypt");
 const User=require("../models/user");
 const random=require("randomstring");
+const token=require("../models/verifyToken")
 const { flash } = require('./middleware');
 
 
@@ -24,6 +25,16 @@ passport.use(new GoogleStrategy({
         console.log(profile);
 
         if (user){
+            if(user.verified===false){
+                User.findByIdAndUpdate(user._id,{verified:true},function(err,user){
+                        token.findOneAndDelete({email:user.email},function(err){
+
+                        })
+                      
+                    console.log("verified");
+                })
+               }       
+                 
             // if found, set this user as req.user
             return done(null, user);
         }else{
@@ -39,14 +50,14 @@ passport.use(new GoogleStrategy({
                     name: profile.displayName,
                     email: profile.emails[0].value,
                     password: pass,
-                    google:true
+                    google:true,
+                    verfied:true
 
 
                 }, function(err, user){
                     if (err){console.log('error in creating user google strategy-passport', err); return;}
                     
-                         
-                         
+                  
                          
                     return done(null,user);
                 });

@@ -23,6 +23,7 @@ module.exports.forgot=function(req,res){
                     
                     if(token){
                         console.log(Date.now())
+                        
                        
                         model.findByIdAndDelete(token._id, function(err){
 

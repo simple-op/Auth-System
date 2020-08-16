@@ -24,9 +24,15 @@ passport.use(new LocalStrategy({
             req.flash("error","Invalid Password")
             return done(null, false, { message: 'Incorrect password.' });
           }
-         
           
-          return done(null, user);
+           if(user.verified===false){
+             req.flash("warning","Plzz Verify Your Email");
+
+            return done(null,false,{message:"Email not verified"});
+           }
+           else{
+          
+          return done(null, user);}
         
          }); 
          });
