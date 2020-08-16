@@ -40,6 +40,7 @@ body{
 #infoPassIcon{
     color: red;
     float: right;
+    margin: -30px 5px;
     
     
 }
@@ -51,6 +52,7 @@ body{
     background-color:lightcoral;
     color: white;
     font-weight: bold;
+
 }
 
 #infoPassIcon:hover~#infoPass{
