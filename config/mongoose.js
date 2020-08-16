@@ -4,7 +4,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
-mongoose.connect("mongodb+srv://ramesh:ptwmjg.ad@cluster0.mijqg.gcp.mongodb.net/AuthSystem?retryWrites=true&w=majority");
+mongoose.connect('mongodb://localhost:27017/Auth_Systems');
 
 
 const connection=mongoose.connection;
