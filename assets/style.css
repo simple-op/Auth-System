@@ -12,13 +12,13 @@ h1{
     text-align: center;
 
 }
+a{
+    color: white;
+}
 
 body{
-    background-image: url("/Images/background.png");
-    
-    background-repeat: no-repeat;
-    background-size: auto;
-
+    background-image: url("/Images/back.jpg");
+    background-size: cover;
     
 }
 #resetForm,#forgot-form,#reset-forgot-form{
@@ -88,4 +88,9 @@ ul{
     #googleButton{
         width: 95vw;
     }
+    body{
+        background-image: url(/Images/background_m.jpg);
+        
+    }
+   
   }
