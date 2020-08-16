@@ -60,7 +60,7 @@ passport.use(new GoogleStrategy({
                     if (err){console.log('error in creating user google strategy-passport', err); return;}
                     
                   
-                        //sending user to request object  
+                        //sending user to request object   
                     return done(null,user);
                 });
         
