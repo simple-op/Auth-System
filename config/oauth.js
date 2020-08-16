@@ -51,7 +51,7 @@ passport.use(new GoogleStrategy({
                     email: profile.emails[0].value,
                     password: pass,
                     google:true,
-                    verfied:true
+                    verified:true
 
 
                 }, function(err, user){
