@@ -65,34 +65,6 @@ request(options, function (error, response, body) {
   console.log(body);
 });
 
-                // let transporter = nodemailer.createTransport({
-                //     host: "smtp.ethereal.email",
-                //     port: 587,
-                //     secure: false,  
-                //   service: 'gmail',
-                //   auth: {
-                //     user: 'rameshkumar160196@gmail.com', 
-                
-                
-                    
-                //     pass: 'ptwmjg.ad' 
-                //   }
-                // });
-                
-                // let mailOptions = {
-                //   from: 'rameshkumar160196@gmail.com',
-                //   to: email,
-                //   subject: 'Sending Email using Node.js',
-                //   text: 'http://localhost:8000/forgotPass/?token='+rtoken
-                // };
-                
-                // transporter.sendMail(mailOptions, function(error, info){
-                //   if (error) {
-                //     console.log(error);
-                //   } else {
-                //     console.log('Email sent: ' + info.response);
-                //   }
-                // });
                 
                 
                 req.flash("success","Link Has Been Sent To Your Email");
