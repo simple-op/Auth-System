@@ -28,7 +28,11 @@ const flash = require('connect-flash');
 // CUSTOM MIDDLE WARE FOR FLASH MESSAGES
 const cMiddleware=require("./config/middleware");
 // URL ENCODER TO GET FORM DETAILS
+var cors = require('cors')
+app.use(cors())
 app.use(express.urlencoded());
+app.use(express.json({ type: ['application/json', 'application/csp-report'] }));
+
 
 // USING COOKIE PARSER
 app.use(cookieParser());

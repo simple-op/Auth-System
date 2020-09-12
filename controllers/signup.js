@@ -115,7 +115,7 @@ module.exports.signup=function(req,res){
           });
           // IF SUCCESS THEN SUCCESS MESSAGE
         req.flash("success","You SignedUp Successfully. Verification Mail Sent Your Email ")
-        return  res.redirect("/login")
+        return  res.redirect("back")
           
 
 
