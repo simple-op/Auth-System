@@ -15,7 +15,7 @@ router.get("/verify",require("../controllers/verify").verify)
 
 
 
-router.use(require("./signup"));
+router.use(require("./signup")); 
 router.use(require("./login"));
 router.get("/*",function(req,res){
     
