@@ -19,10 +19,9 @@ const session=require("express-session");
 // REQURING COOKIE PARSER
 var cookieParser = require('cookie-parser');
 // REQURING PASSPORT STRATAGIES FROM CONFIG FOLDER 
-require("./config/passport-local");
-require("./config/oauth")
+
 // MONGO CONNECT FOR MAINTING SESSION IN DB
- const mongo_connect=require("connect-mongo")(session);
+
 //  REQURING CONNECT FLASH FOR FLASH MESSAGES IN SESSION
 const flash = require('connect-flash');
 // CUSTOM MIDDLE WARE FOR FLASH MESSAGES
@@ -43,23 +42,15 @@ app.use(session({
    saveUninitialized:false,
    resave:false,
    cookie:{
-     maxAge:(1000*60*60*24*2)
+     maxAge:(10000)
    },
-   store:new mongo_connect({
-
-     mongooseConnection:mongoose,
-     autoRemove:"disable"
-
-   },function(err){
-     console.log(err||"connect-mongo")
-   })
+  
 
 }))
 
-app.use(passport.initialize());
-app.use(passport.session());
+
 // CHECKING USER AUTHENTICATION
-app.use(passport.isUserAuth);
+
 // USING FLASH MIDDLEWARE
 app.use(flash());
 // USING CUSTOM MIDDLE WARE FOR FLASH

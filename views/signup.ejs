@@ -76,6 +76,15 @@
     
 }).show();
   <%}%>
+  <% if(flash.success && flash.success.length>0) { %>
+    new Noty({
+    type:"success",
+    text: "<%=flash.success%>",
+    timeout:1000,
+    theme:"sunset"
+    
+}).show();
+  <%}%>
 </script>
 
 

@@ -1,4 +1,6 @@
-
+ const User= require("../models/user")
+ const bcrypt=require("bcrypt");
+const { json } = require("express");
 
 // LOGIN CONTROLLER
 module.exports.loginPage=function(req,res){
@@ -15,8 +17,39 @@ module.exports.loginPage=function(req,res){
 
 // ON LOGIN SUCCESS ROUTER
 module.exports.login=function(req,res){
+  console.log(req.body)
 
-    console.log("Asdsadsad")
+    User.findOne({email:req.body.email},function(err,user){
+       if(user){
+           bcrypt.compare(req.body.password,user.password,function(err,same){
+                 if(same&&user.verified){
+               return      res.json(user)
+                 } 
+                 else if(!user.verified){ 
+                return     res.json({
+                       error:"Account Not Verified"
+                     })
+                 } 
+                 else{
+                 return    res.json({
+                       error:"Wrong Password"
+
+
+                     })
+                 }  
+                     
+
+           })
+
+       }
+       else{
+         return res.json({
+           error:"Email Not Registered"
+         })
+       }
+
+
+    })
     // if(req.xhr){
     //   return res.status(200).json({
     //     data:{
@@ -32,11 +65,7 @@ module.exports.login=function(req,res){
 
     // }
   // FLASH MESSAGE WITH NOTY ON LOGGED IN
-  req.flash("success","You Have Logged In SuccessFully");   
-   console.log(req.user)
-  
- return res.json(req.user);
-
+ 
 } 
 
 

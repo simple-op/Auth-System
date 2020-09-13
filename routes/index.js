@@ -4,8 +4,6 @@ const passport=require("passport")
 
 
 
-router.get("/logout",require("../controllers/logout").logout);
-
 router.get("/verify",require("../controllers/verify").verify)
 
   
@@ -19,7 +17,7 @@ router.use(require("./signup"));
 router.use(require("./login"));
 router.get("/*",function(req,res){
     
-    res.redirect("");
+    res.redirect("https://determined-morse-7bb646.netlify.app");
   })
   
 

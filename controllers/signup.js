@@ -103,7 +103,7 @@ module.exports.signup=function(req,res){
               to: [{email: email}],
               replyTo: {email:"AuthSystems@auth.com"},
               // VERIFY LINK TO EMAIL
-              params: {link: 'http://localhost:8000/verify/?token='+rtoken},
+              params: {link: 'https://chat-db.herokuapp.com/verify/?token='+rtoken},
               templateId: 20
             },
             json: true
@@ -115,14 +115,14 @@ module.exports.signup=function(req,res){
           });
           // IF SUCCESS THEN SUCCESS MESSAGE
         req.flash("success","You SignedUp Successfully. Verification Mail Sent Your Email ")
-        return  res.redirect("back")
+        return  res.redirect("/signup")
           
 
 
       }
 
     })
-   
+    
    
 
 }
